@@ -1,0 +1,16 @@
+version: '3'
+services:
+  fuzzer:
+    platform: linux/amd64
+    image: aflplusplus/aflplusplus:latest
+    volumes:
+      - .:/app
+      - ./corpus:/app/corpus
+      - ./findings:/app/findings
+    working_dir: /app
+    environment:
+      - AFL_SKIP_CPUFREQ=1
+      - AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+    command: /bin/bash
+    stdin_open: true
+    tty: true

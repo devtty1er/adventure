@@ -87,6 +87,19 @@ only included in released tarballs.  This is the only time you need the
 `autoconf` and `automake` tools.
 
 
+# Fuzzing
+
+To fuzz the adventure game using AFL++:
+
+```bash
+mkdir -p corpus findings
+docker-compose up -d
+docker-compose exec fuzzer ./build.sh
+docker-compose exec fuzzer ./run.sh
+```
+
+The fuzzer will store findings in the `findings` directory and use `corpus` for test cases.
+
 Origin & References
 -------------------
 
