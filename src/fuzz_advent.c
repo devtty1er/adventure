@@ -17,11 +17,11 @@
 
 #define setmem(l, s, c) memset(l, c, s)
 
-#define printf(...) 
-#define fprintf(...) 
-#define fputs(...) 
-#define fputc(...) 
-#define fflush(...) 
+// #define printf(...) 
+// #define fprintf(...) 
+// #define fputs(...) 
+// #define fputc(...) 
+// #define fflush(...) 
 
 
 FILE *fopen(const char *pathname, const char *mode) { return NULL; }
