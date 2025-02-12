@@ -172,56 +172,11 @@ void scanint(int *pi, char *str)
 }
 
 int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-    if (size < 2504 + 64) return 0;  // Need game state (2504) + minimum command input (64)
+    if (size < 64) return 0;  // Need minimum command input (64)
 
     initplay();
     
-    const uint8_t *p = data;
-    // Commented out state restoration
-    /*
-    memcpy(&turns, p, sizeof(int)); p += sizeof(int);
-    memcpy(&loc, p, sizeof(int)); p += sizeof(int);
-    memcpy(&oldloc, p, sizeof(int)); p += sizeof(int);
-    memcpy(&oldloc2, p, sizeof(int)); p += sizeof(int);
-    memcpy(&newloc, p, sizeof(int)); p += sizeof(int);
-    memcpy(cond, p, sizeof(int) * MAXLOC); p += sizeof(int) * MAXLOC;
-    memcpy(place, p, sizeof(int) * MAXOBJ); p += sizeof(int) * MAXOBJ;
-    memcpy(fixed, p, sizeof(int) * MAXOBJ); p += sizeof(int) * MAXOBJ;
-    memcpy(visited, p, sizeof(int) * MAXLOC); p += sizeof(int) * MAXLOC;
-    memcpy(prop, p, sizeof(int) * MAXOBJ); p += sizeof(int) * MAXOBJ;
-    memcpy(&tally, p, sizeof(int)); p += sizeof(int);
-    memcpy(&tally2, p, sizeof(int)); p += sizeof(int);
-    memcpy(&limit, p, sizeof(int)); p += sizeof(int);
-    memcpy(&lmwarn, p, sizeof(int)); p += sizeof(int);
-    memcpy(&wzdark, p, sizeof(int)); p += sizeof(int);
-    memcpy(&closing, p, sizeof(int)); p += sizeof(int);
-    memcpy(&closed, p, sizeof(int)); p += sizeof(int);
-    memcpy(&holding, p, sizeof(int)); p += sizeof(int);
-    memcpy(&detail, p, sizeof(int)); p += sizeof(int);
-    memcpy(&knfloc, p, sizeof(int)); p += sizeof(int);
-    memcpy(&clock1, p, sizeof(int)); p += sizeof(int);
-    memcpy(&clock2, p, sizeof(int)); p += sizeof(int);
-    memcpy(&panic, p, sizeof(int)); p += sizeof(int);
-    memcpy(dloc, p, sizeof(int) * DWARFMAX); p += sizeof(int) * DWARFMAX;
-    memcpy(&dflag, p, sizeof(int)); p += sizeof(int);
-    memcpy(dseen, p, sizeof(int) * DWARFMAX); p += sizeof(int) * DWARFMAX;
-    memcpy(odloc, p, sizeof(int) * DWARFMAX); p += sizeof(int) * DWARFMAX;
-    memcpy(&daltloc, p, sizeof(int)); p += sizeof(int);
-    memcpy(&dkill, p, sizeof(int)); p += sizeof(int);
-    memcpy(&chloc, p, sizeof(int)); p += sizeof(int);
-    memcpy(&chloc2, p, sizeof(int)); p += sizeof(int);
-    memcpy(&bonus, p, sizeof(int)); p += sizeof(int);
-    memcpy(&numdie, p, sizeof(int)); p += sizeof(int);
-    memcpy(&object1, p, sizeof(int)); p += sizeof(int);
-    memcpy(&gaveup, p, sizeof(int)); p += sizeof(int);
-    memcpy(&foobar, p, sizeof(int)); p += sizeof(int);
-    */
-    p += 2504; // Skip over the state data
-
-    data += 2504;
-    size -= 2504;
-
-    // Rest is commands
+    // Commands come directly from input data
     memset(g_input, 0, sizeof(g_input));
     memcpy(g_input, data, size < sizeof(g_input) ? size : sizeof(g_input));
     g_pos = 0;
