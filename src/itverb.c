@@ -74,9 +74,9 @@ void itverb(void)
 	case INVENTORY:
 		inventory();
 		break;
-	case LOAD:
-		restore();
-		break;
+	// case LOAD:
+	// 	restore();
+	// 	break;
 	default:
 		printf("This intransitive not implemented yet\n");
 	}
