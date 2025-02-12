@@ -177,6 +177,8 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     initplay();
     
     const uint8_t *p = data;
+    // Commented out state restoration
+    /*
     memcpy(&turns, p, sizeof(int)); p += sizeof(int);
     memcpy(&loc, p, sizeof(int)); p += sizeof(int);
     memcpy(&oldloc, p, sizeof(int)); p += sizeof(int);
@@ -213,6 +215,8 @@ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     memcpy(&object1, p, sizeof(int)); p += sizeof(int);
     memcpy(&gaveup, p, sizeof(int)); p += sizeof(int);
     memcpy(&foobar, p, sizeof(int)); p += sizeof(int);
+    */
+    p += 2504; // Skip over the state data
 
     data += 2504;
     size -= 2504;
