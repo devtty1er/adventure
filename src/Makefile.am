@@ -5,19 +5,15 @@ EXTRA_DIST      = advent.desktop.in
 desktopdir      = $(datadir)/applications
 desktop_DATA    = advent.desktop
 
-bin_PROGRAMS    = advent fuzz_advent
+bin_PROGRAMS    = advent
 noinst_PROGRAMS = advent0
 
 advent_CPPFLAGS = -DDATADIR=\"$(pkgdatadir)\"
-advent_SOURCES  = advent.c database.c english.c itverb.c turn.c verb.c   \
+advent_SOURCES  = fuzz_advent.c database.c english.c itverb.c turn.c verb.c   \
 		  advcave.h advdec.h advdef.h advent.h advword.h proto.h \
 		  advent1.h advent2.h advent3.h advent4.h advtext.h
 
-fuzz_advent_CPPFLAGS = -DDATADIR=\"$(pkgdatadir)\" -I/AFLplusplus/include
-fuzz_advent_SOURCES  = /AFLplusplus/utils/aflpp_driver/aflpp_driver.c \
-		  fuzz_advent.c database.c english.c itverb.c turn.c verb.c \
-		  advcave.h advdec.h advdef.h advent.h advword.h proto.h \
-		  advent1.h advent2.h advent3.h advent4.h advtext.h
+advent_LDADD = /AFLplusplus/libAFLDriver.a
 
 if GAMEDATA
 gamedir         = $(pkgdatadir)
