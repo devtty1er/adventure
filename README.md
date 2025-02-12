@@ -94,8 +94,10 @@ To fuzz the adventure game using AFL++:
 ```bash
 mkdir -p corpus findings
 docker-compose up -d
-docker-compose exec fuzzer ./build.sh
-docker-compose exec fuzzer ./run.sh
+docker-compose exec -it fuzzer bash
+
+CC=afl-clang-fast ./configure
+make
 ```
 
 The fuzzer will store findings in the `findings` directory and use `corpus` for test cases.
