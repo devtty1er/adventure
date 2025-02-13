@@ -1,7 +1,6 @@
 {
     "name": "Open Adventure AFL",
     "build": {
-        "context": "./afl",
         "dockerfile": "Dockerfile"
     },
     "customizations": {
@@ -20,8 +19,6 @@
         }
     },
     "remoteUser": "vscode",
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-    "workspaceFolder": "/workspace",
     "capAdd": ["SYS_PTRACE"],
     "securityOpt": ["seccomp=unconfined"]
 }
