@@ -19,4 +19,5 @@ ENV LC_CTYPE=C.UTF-8
 
 RUN python3 -m pip install --upgrade pip && \
     git clone https://github.com/hugsy/gef.git /opt/gef && \
-    echo "source /opt/gef/gef.py" > ~/.gdbinit
+    echo "source /opt/gef/gef.py" > /home/vscode/.gdbinit && \
+    chown -R vscode:vscode /home/vscode/.gdbinit
