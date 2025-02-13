@@ -2,7 +2,9 @@ version: '3'
 services:
   fuzzer:
     platform: linux/amd64
-    image: aflplusplus/aflplusplus:latest
+    build:
+      context: ./afl
+      dockerfile: Dockerfile
     volumes:
       - .:/app
       - ./corpus:/app/corpus
